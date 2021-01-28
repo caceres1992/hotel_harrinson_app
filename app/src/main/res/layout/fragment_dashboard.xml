@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+android:background="@drawable/fondohabitacion"
+    tools:context=".ui.dashboard.DashboardFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#AD050101"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="80dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/color_claro_hotel"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:paddingTop="4dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Check-In"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:paddingTop="5dp"
+                    android:textSize="18sp"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/color_claro_hotel"
+                    android:layout_height="wrap_content"
+                    android:text="20-01-2021"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/color_claro_hotel"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:paddingTop="4dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Check-Out"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:paddingTop="5dp"
+                    android:textSize="18sp"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/color_claro_hotel"
+                    android:layout_height="wrap_content"
+                    android:text="29-01-2021"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn_buscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="@color/amarillo_hotel"
+            android:text="Buscar Habitacion"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

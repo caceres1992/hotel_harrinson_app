@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.harrinsonhotelapp.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_loginActivity"
+            app:destination="@id/loginActivity" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.example.harrinsonhotelapp.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/nav_listar_habitacion"
+            app:destination="@id/lista_Habitacion_Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.harrinsonhotelapp.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/lista_Habitacion_Fragment"
+        android:name="com.example.harrinsonhotelapp.ui.habitacion.Lista_Habitacion_Fragment"
+        android:label="listar_habitacion"
+        tools:layout="@layout/fragment_lista__habitacion_" >
+        <action
+            android:id="@+id/action_lista_Habitacion_Fragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
+        <action
+            android:id="@+id/action_lista_Habitacion_Fragment_to_informacion_habitacion"
+            app:destination="@id/nav_informacion_habitacion" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_informacion_habitacion"
+        android:name="com.example.harrinsonhotelapp.ui.habitacion.Informacion_habitacion"
+        android:label="informacion"
+        tools:layout="@layout/fragment_informacion_habitacion" >
+        <action
+            android:id="@+id/action_nav_informacion_habitacion_to_lista_Habitacion_Fragment"
+            app:destination="@id/lista_Habitacion_Fragment" />
+        <action
+            android:id="@+id/action_nav_informacion_habitacion_to_formularioReservaFragment"
+            app:destination="@id/formularioReservaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/formularioReservaFragment"
+        android:name="com.example.harrinsonhotelapp.ui.habitacion.FormularioReservaFragment"
+        android:label="fragment_formulario_reserva"
+        tools:layout="@layout/fragment_formulario_reserva" >
+        <action
+            android:id="@+id/action_formularioReservaFragment_to_lista_Habitacion_Fragment"
+            app:destination="@id/lista_Habitacion_Fragment" />
+        <action
+            android:id="@+id/action_formularioReservaFragment_to_detalleReservaFragment"
+            app:destination="@id/detalleReservaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleReservaFragment"
+        android:name="com.example.harrinsonhotelapp.DetalleReservaFragment"
+        android:label="fragment_detalle_reserva"
+        tools:layout="@layout/fragment_detalle_reserva" >
+        <action
+            android:id="@+id/action_detalleReservaFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
+    </fragment>
+    <fragment
+        android:id="@+id/ubicacionFragment"
+        android:name="com.example.harrinsonhotelapp.ui.locations.UbicacionFragment"
+        android:label="fragment_ubicacion"
+        tools:layout="@layout/fragment_ubicacion" >
+        <action
+            android:id="@+id/action_ubicacionFragment_to_mapaActivity"
+            app:destination="@id/mapaActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/mapaActivity"
+        android:name="com.example.harrinsonhotelapp.MapaActivity"
+        android:label="MapaActivity" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.harrinsonhotelapp.ui.login.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+</navigation>
