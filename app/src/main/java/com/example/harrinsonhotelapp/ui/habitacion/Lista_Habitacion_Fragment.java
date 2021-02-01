@@ -62,6 +62,7 @@ public class Lista_Habitacion_Fragment extends Fragment implements HabitacionDet
                 new ViewModelProvider(this).get(HabitacionViewModel.class);
 
         View v =inflater.inflate(R.layout.fragment_lista__habitacion_, container, false);
+
         ibtnBack = v.findViewById(R.id.btn_back);
         tv_filter = v.findViewById(R.id.tv_filter_habitacion);
         recyclerView=v.findViewById(R.id.rv_listado_habitacion);
@@ -71,14 +72,16 @@ public class Lista_Habitacion_Fragment extends Fragment implements HabitacionDet
         btn_filter.setOnClickListener(v1 -> habitacionViewModel.ShowDialog(getContext()));
 
         RequestFilterHabitacion filterHabitacion = new RequestFilterHabitacion();
+
+
         f_inicio = preferences.getString("f_inicio",null);
         f_final = preferences.getString("f_final",null);
 
 
-        Toast.makeText(getContext(),"start:"+f_inicio+"final:"+f_final,Toast.LENGTH_LONG).show();
 
         filterHabitacion.setStart(f_inicio);
         filterHabitacion.setFinish(f_final);
+
         habitacionViewModel.filterHabitacionPorFecha(filterHabitacion);
         adapter = new HabitacionesAdapter(getContext(),this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

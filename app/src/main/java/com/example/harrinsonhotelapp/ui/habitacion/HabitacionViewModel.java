@@ -83,6 +83,20 @@ public class HabitacionViewModel  extends AndroidViewModel {
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public void ShowDialog(Context context){
 
         preferences = context.getSharedPreferences("datos",Context.MODE_PRIVATE);

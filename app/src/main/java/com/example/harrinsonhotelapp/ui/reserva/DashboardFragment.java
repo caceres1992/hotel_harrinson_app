@@ -34,7 +34,8 @@ FloatingActionButton btn_range_date;
         button = view.findViewById(R.id.btn_buscar);
         btn_range_date = view.findViewById(R.id.bt_range_date);
 
-        btn_range_date.setOnClickListener(v -> { btn_range_date.setBackgroundResource(R.color.amarillo_hotel);
+        btn_range_date.setOnClickListener(v -> {
+
         dashboardViewModel.ShowDialog(getContext());
 
         dashboardViewModel.mutableFechaInicio.observe(getViewLifecycleOwner(), start -> {

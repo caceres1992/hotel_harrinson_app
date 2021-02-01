@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.habitacion.Informacion_habitacion">
+    tools:context=".ui.promocion.DetailPromocionFragment">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -15,10 +15,12 @@
         android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/detalle_img_promocion"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
         <ImageButton
-            android:id="@+id/btn_back_info"
+            android:id="@+id/btn_back_info_promocion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#000"
@@ -70,10 +72,10 @@
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="250dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="50dp"
         android:src="@drawable/ic_outline_king_bed_24"
-        app:layout_constraintStart_toEndOf="@+id/tv_detalle_precio_promocion"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detalle_img_promocion" />
 
     <TextView
@@ -98,6 +100,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_precio_desc_promocion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Ahora S/100"
+        app:layout_constraintStart_toEndOf="@+id/tv_detalle_precio_promocion"
+        app:layout_constraintTop_toBottomOf="@+id/detalle_img_promocion" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

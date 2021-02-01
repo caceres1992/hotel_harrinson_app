@@ -1,6 +1,7 @@
 package com.example.harrinsonhotelapp.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -29,6 +30,7 @@ public class PromocionAdapter  extends RecyclerView.Adapter<PromocionHolder> {
     Context context;
     View view;
     HabitacionPromocion promocion;
+    SharedPreferences preferences;
 
     public PromocionAdapter(Context context,HabitacionPromocion promocion) {
         this.context = context;
@@ -56,7 +58,6 @@ public class PromocionAdapter  extends RecyclerView.Adapter<PromocionHolder> {
             String parseTotal = context.getString(R.string.precio_habitacion_promocion,habitacion.getTipoHabitacion().getPrecio().toString());
 
 
-
             holder.tv_desc_promopcion.setText(context.getString(R.string.ahora,"S/"+total_pagar_promocion));
             holder.tv_descripcion_promocion.setText(habitacion.getDescripcion());
             holder.tv_nro_camas_promocion.setText(habitacion.getTipoHabitacion().getNroCamas().toString());
@@ -70,8 +71,11 @@ public class PromocionAdapter  extends RecyclerView.Adapter<PromocionHolder> {
         Glide.with(context)
                 .load(habitacion.getImg())
                 .into(holder.image_habitacion_promocion);
-
+        preferences =context.getSharedPreferences("datos",Context.MODE_PRIVATE);
+        String f_inicio=preferences.getString("f_inicio",null);
+        String f_final= preferences.getString("f_final",null);
         holder.btnInfo_promocion.setOnClickListener(v->{
+
 
                 int id, ncamas;
                 double precio,des;
@@ -85,10 +89,17 @@ public class PromocionAdapter  extends RecyclerView.Adapter<PromocionHolder> {
                 strDescripcion =  habitacion.getDescripcion();
                 ncamas = habitacion.getTipoHabitacion().getNroCamas();
 
-
                 promocion.onEventDetailPromocion(id,
                         precio,des,strTipoHabitacion,ncamas,strDescripcion,strImg
                 );
+                if (f_inicio ==null){
+                    Toast.makeText(context.getApplicationContext(),"Necesita elegir fechas",Toast.LENGTH_LONG).show();
+                }else
+                {
+                    findNavController(v).navigate(R.id.action_navigation_notifications_to_detailPromocionFragment);
+                }
+
+
         });
     }
 

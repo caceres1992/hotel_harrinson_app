@@ -4,10 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentResultListener;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +14,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.harrinsonhotelapp.R;
-
-import org.w3c.dom.Text;
 
 import static androidx.navigation.Navigation.findNavController;
 
@@ -74,12 +69,12 @@ int id;
         View v = inflater.inflate(R.layout.fragment_informacion_habitacion, container, false);
         preferences = getContext().getSharedPreferences("datos",Context.MODE_PRIVATE);
         button_Back = v.findViewById(R.id.btn_back_info);
-        btn_Reservar = v.findViewById(R.id.btn_info_reserva);
-        tv_precio = v.findViewById(R.id.tv_detalle_precio);
-        tv_tipo_habitacion = v.findViewById(R.id.detalle_tipo_habitacion);
-        tv_descripcion = v.findViewById(R.id.detalle_description);
-        tv_nr_camas = v.findViewById(R.id.detalle_nro_camas);
-        ivHabitacion = v.findViewById(R.id.detalle_img);
+        btn_Reservar = v.findViewById(R.id.btn_info_reserva_promocion);
+        tv_precio = v.findViewById(R.id.tv_detalle_precio_promocion);
+        tv_tipo_habitacion = v.findViewById(R.id.detalle_tipo_habitacion_promocion);
+        tv_descripcion = v.findViewById(R.id.detalle_description_promocion);
+        tv_nr_camas = v.findViewById(R.id.detalle_nro_camas_promocion);
+        ivHabitacion = v.findViewById(R.id.detalle_img_promocion);
 
         setOnclickListener();
 

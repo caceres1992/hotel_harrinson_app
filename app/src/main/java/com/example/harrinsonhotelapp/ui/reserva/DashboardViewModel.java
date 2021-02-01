@@ -52,33 +52,26 @@ AlertDialog dialog;
         btn_filter_range = view.findViewById(R.id.btn_filter_range);
       
         calendar.setCalendarListener(calendarListener);
+
+
         btn_filter_range.setOnClickListener(v -> {
                 dialog.dismiss();
         });
 
-//        calendar.setNavLeftImage(ContextCompat.getDrawable(this,R.drawable.ic_left));
-//        calendar.setNavRightImage(ContextCompat.getDrawable(this,R.drawable.ic_right));
-        Calendar caledario = Calendar.getInstance();
-        int anio = caledario.get(Calendar.YEAR);
-        int day = caledario.get(Calendar.DAY_OF_MONTH);
 
-        int mes = caledario.get(Calendar.MONTH)-1;
 
         final Calendar startMonth = Calendar.getInstance();
-        startMonth.set(anio, mes, day);
         final Calendar endMonth = (Calendar) startMonth.clone();
         endMonth.add(Calendar.MONTH, 5);
 
+
+//        bloquear los dias antes  y un rango limitado
         final Calendar startDateSelectable = (Calendar) startMonth.clone();
-        startDateSelectable.add(Calendar.DATE, 31);
+        startDateSelectable.add(Calendar.DATE, 0);
         final Calendar endDateSelectable = (Calendar) endMonth.clone();
         endDateSelectable.add(Calendar.DATE, -31);
 
         calendar.setSelectableDateRange(startDateSelectable, endDateSelectable);
-
-        final Calendar current = (Calendar) startMonth.clone();
-        current.add(Calendar.MONTH, 1);
-        calendar.setCurrentMonth(current);
 
 
 
@@ -92,9 +85,6 @@ AlertDialog dialog;
     public  CalendarListener calendarListener = new CalendarListener() {
         @Override
         public void onFirstDateSelected(Calendar startDate) {
-            Toast.makeText(getApplication(), "Start Date: " + startDate.getTime().toString(), Toast.LENGTH_SHORT).show();
-            Log.d("TITULO", "Selected dates: Start: " + (calendar.getStartDate()) +
-                    " End:" + (calendar.getEndDate()));
         }
 
         @Override
@@ -102,13 +92,16 @@ AlertDialog dialog;
 
             int diaInicio = startDate.get(Calendar.DAY_OF_YEAR);
           int diafinal=  endDate.get(Calendar.DAY_OF_YEAR);
+
           int diferencia= diafinal - diaInicio;
+
             String inicioParse = DateFormat.format("dd-MM-yyyy",startDate.getTime()).toString();
             String finalPase = DateFormat.format("dd-MM-yyyy",endDate.getTime()).toString();
 
 
             String iniciobd =DateFormat.format("yyyy-MM-dd",startDate.getTime()).toString();
             String finbd =DateFormat.format("yyyy-MM-dd",endDate.getTime()).toString();
+
           SharedPreferences.Editor editor = preferences.edit()
                   .putInt("total_dias",diferencia)
                   .putString("f_inicio",iniciobd)

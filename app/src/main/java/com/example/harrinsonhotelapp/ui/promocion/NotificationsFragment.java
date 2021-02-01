@@ -1,5 +1,6 @@
-package com.example.harrinsonhotelapp.ui.notifications;
+package com.example.harrinsonhotelapp.ui.promocion;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,6 @@ import android.view.animation.LayoutAnimationController;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,15 +20,16 @@ import com.example.harrinsonhotelapp.R;
 import com.example.harrinsonhotelapp.adapter.PromocionAdapter;
 import com.example.harrinsonhotelapp.model.Habitacion;
 import com.example.harrinsonhotelapp.request.RequestFilterHabitacion;
+import com.example.harrinsonhotelapp.ui.promocion.viewmodel.NotificationsViewModel;
 import com.example.harrinsonhotelapp.utils.HabitacionPromocion;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class NotificationsFragment extends Fragment implements HabitacionPromocion {
     RecyclerView recyclerView;
     PromocionAdapter adapter;
+    SharedPreferences preferences;
     TextView tv_fecha_promocion;
     private NotificationsViewModel notificationsViewModel;
 
@@ -44,12 +45,7 @@ public class NotificationsFragment extends Fragment implements HabitacionPromoci
 
         tv_fecha_promocion.setOnClickListener(v -> notificationsViewModel.showDialog(getContext()));
 
-        notificationsViewModel.fecha_inicio.observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                    tv_fecha_promocion.setText(s);
-            }
-        });
+        notificationsViewModel.fecha_inicio.observe(getViewLifecycleOwner(), s -> tv_fecha_promocion.setText(s));
 
         RequestFilterHabitacion requestFilterHabitacion =new RequestFilterHabitacion();
         requestFilterHabitacion.setStart("2021-02-01");

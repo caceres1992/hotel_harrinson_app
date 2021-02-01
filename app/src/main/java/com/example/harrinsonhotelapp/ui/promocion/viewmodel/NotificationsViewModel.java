@@ -1,22 +1,18 @@
-package com.example.harrinsonhotelapp.ui.notifications;
+package com.example.harrinsonhotelapp.ui.promocion.viewmodel;
 
 import android.app.AlertDialog;
 import android.app.Application;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.archit.calendardaterangepicker.customviews.DateRangeCalendarView;
 import com.example.harrinsonhotelapp.R;
@@ -37,9 +33,9 @@ public class NotificationsViewModel extends AndroidViewModel {
 
     AlertDialog dialog;
     DateRangeCalendarView calendar;
-    MutableLiveData<List<Habitacion>> mutableLiveDataPromocion = new MutableLiveData<>();
+   public MutableLiveData<List<Habitacion>> mutableLiveDataPromocion = new MutableLiveData<>();
     Button btn_close;
-    MutableLiveData<String> fecha_inicio = new MutableLiveData<>();
+   public MutableLiveData<String> fecha_inicio = new MutableLiveData<>();
     MutableLiveData<String> fecha_final = new MutableLiveData<>();
 
     public NotificationsViewModel(@NonNull Application application) {
@@ -102,6 +98,13 @@ public class NotificationsViewModel extends AndroidViewModel {
 
             String inicioFilter  = DateFormat.format("yyyy-MM-dd",startDate.getTime()).toString();
             String finalFilter  = DateFormat.format("yyyy-MM-dd",endDate.getTime()).toString();
+
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("f_inicio",inicioFilter)
+                    .putString("f_final",finalFilter);
+            editor.commit();
+
+
             RequestFilterHabitacion filterHabitacion = new RequestFilterHabitacion();
 
             filterHabitacion.setStart(inicioFilter);
