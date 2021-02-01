@@ -53,27 +53,21 @@ AlertDialog dialog;
       
         calendar.setCalendarListener(calendarListener);
 
-
         btn_filter_range.setOnClickListener(v -> {
                 dialog.dismiss();
         });
-
-
-
+        //DESDE DONDE EMPEZARA
         final Calendar startMonth = Calendar.getInstance();
         final Calendar endMonth = (Calendar) startMonth.clone();
         endMonth.add(Calendar.MONTH, 5);
-
 
 //        bloquear los dias antes  y un rango limitado
         final Calendar startDateSelectable = (Calendar) startMonth.clone();
         startDateSelectable.add(Calendar.DATE, 0);
         final Calendar endDateSelectable = (Calendar) endMonth.clone();
-        endDateSelectable.add(Calendar.DATE, -31);
+        endDateSelectable.add(Calendar.DATE, 0);
 
         calendar.setSelectableDateRange(startDateSelectable, endDateSelectable);
-
-
 
       dialog   = new AlertDialog.Builder(context)
                 .setView(view)
