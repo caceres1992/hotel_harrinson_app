@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.SyncStateContract;
 import android.view.WindowManager;
@@ -18,11 +19,12 @@ import com.viksaa.sssplash.lib.model.ConfigSplash;
 
 public class SplashActivity extends AwesomeSplash {
 
+    SharedPreferences preferences ;
 
     @SuppressLint("ResourceType")
     @Override
     public void initSplash(ConfigSplash configSplash) {
-
+        preferences = getSharedPreferences("datos",MODE_PRIVATE);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -41,7 +43,7 @@ public class SplashActivity extends AwesomeSplash {
 
 
         //personalizar titulo
-        configSplash.setTitleSplash("Hotel Harrinson Bienvenido");
+        configSplash.setTitleSplash("Hotel Harrinson");
         configSplash.setTitleTextColor(R.color.color_claro_hotel);
         configSplash.setTitleTextSize(30f); //float value
         configSplash.setAnimTitleDuration(3000);
@@ -51,7 +53,17 @@ public class SplashActivity extends AwesomeSplash {
 
     @Override
     public void animationsFinished() {
-        Intent intent = new Intent (getApplicationContext(), HallActivity.class);
-        startActivity(intent);
+        int usuario_id = preferences.getInt("id_huesped",0);
+        if (usuario_id>0){
+            Intent intent = new Intent (getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }else{
+            Intent intent = new Intent (getApplicationContext(), HallActivity.class);
+            startActivity(intent);
+        }
+
     }
+
+
+
 }

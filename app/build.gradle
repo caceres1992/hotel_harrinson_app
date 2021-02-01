@@ -58,6 +58,9 @@ dependencies {
 //
     implementation 'androidx.fragment:fragment:1.3.0-alpha08'
 //animation para el splash screem
-    compile 'com.github.ViksaaSkool:AwesomeSplash:v1.0.0'
+    implementation 'com.github.ViksaaSkool:AwesomeSplash:v1.0.0'
+
+    //fecha
+    implementation 'com.archit.calendar:awesome-calendar:2.0.0'
 
 }

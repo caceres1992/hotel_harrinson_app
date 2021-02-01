@@ -13,6 +13,7 @@
     <string name="hello_world">Hello Square World!</string>
 
     <string name="precio_habitacion">S/ %1$s</string>
+    <string name="precio_habitacion_promocion">antes S/ %1$s</string>
     <string name="tipohabitacion">Habitacion %1$s</string>
     <string name="detalle_description">Gracias por realizar su reserva, es necesario hacer el deposito del 50 %1$spara confimar su reserva (plazo maximo de 2 dias). Luego enviar la foto al siguiente numero de Whatsappp</string>
     <string name="nombre">Nombre : %1$s</string>
@@ -24,4 +25,5 @@
     <!--token para mapbox-->
     <string name="access_token" translatable="false">pk.eyJ1IjoiYTE4MTAwMDU0IiwiYSI6ImNram1kbWp2djAzeGcycHBlMTZrZm9zODIifQ.gqZCO2usbJavClx7E0ix4A</string>
     <string name="name_hotel">Hotel Harrinson a su Servicio</string>
+    <string name="ahora">Ahora %1$s</string>
 </resources>

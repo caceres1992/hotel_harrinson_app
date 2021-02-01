@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="20dp"
+    android:layout_height="match_parent">
+
+    <com.archit.calendardaterangepicker.customviews.DateRangeCalendarView
+        android:id="@+id/calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        custom:header_bg="@color/color_stado_pendiente"
+        custom:disable_date_color="#ABABAB"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toTopOf="parent"
+        custom:range_color="#6BF1313D"
+        custom:selected_date_circle_color="@color/color_stado_pendiente"
+        custom:title_color="@color/week_color"
+
+        tools:ignore="MissingConstraints"></com.archit.calendardaterangepicker.customviews.DateRangeCalendarView>
+
+    <Button
+        android:id="@+id/btn_filter_range"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/amarillo_hotel"
+        android:drawableLeft="@drawable/ic_close"
+        android:text="close"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toBottomOf="@+id/calendar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

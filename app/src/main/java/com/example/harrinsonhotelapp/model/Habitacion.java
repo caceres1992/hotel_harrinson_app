@@ -13,6 +13,9 @@ public class Habitacion {
     @SerializedName("descripcion")
     @Expose
     private String descripcion;
+    @SerializedName("descuento")
+    @Expose
+    private double descuento;
     @SerializedName("imagen")
     @Expose
     private String img;
@@ -22,6 +25,10 @@ public class Habitacion {
     @SerializedName("tipoHabitacion")
     @Expose
     private TipoHabitacion tipoHabitacion;
+
+    @SerializedName("promocion")
+    @Expose
+    Boolean promocion;
     @SerializedName("estado")
     @Expose
     private String estado;
@@ -30,7 +37,21 @@ public class Habitacion {
     public Habitacion() {
     }
 
+    public double getDescuento() {
+        return descuento;
+    }
 
+    public void setDescuento(double descuento) {
+        this.descuento = descuento;
+    }
+
+    public Boolean getPromocion() {
+        return promocion;
+    }
+
+    public void setPromocion(Boolean promocion) {
+        this.promocion = promocion;
+    }
 
     public int getId() {
         return id;

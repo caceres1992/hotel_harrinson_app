@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.preference.Preference;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -115,8 +116,8 @@ TextView precio,descripcion,fecha_incio,fecha_final,total_dias,precio_total,nr_c
     private void setValues(){
         String strTipoHabitacion,strDescripcion;
         int t_dias;
-
-
+//        String fechaInicioDb = preferences.getString("f_inicio",null);
+      
         t_dias = preferences.getInt("total_dias",0);
         precio_unitario = Double.parseDouble(preferences.getString("precio",null));
         t_precio = t_dias*precio_unitario;

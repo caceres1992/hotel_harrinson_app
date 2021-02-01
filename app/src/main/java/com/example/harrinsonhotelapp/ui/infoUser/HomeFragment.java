@@ -1,4 +1,4 @@
-package com.example.harrinsonhotelapp.ui.home;
+package com.example.harrinsonhotelapp.ui.infoUser;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -24,7 +23,6 @@ import com.example.harrinsonhotelapp.R;
 import com.example.harrinsonhotelapp.adapter.HistorialAdapter;
 import com.example.harrinsonhotelapp.model.Reserva;
 
-import java.util.Collection;
 import java.util.List;
 
 import static androidx.navigation.Navigation.findNavController;
@@ -63,7 +61,8 @@ public class HomeFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
         btn_cerrar_session.setOnClickListener(v -> {
-            preferences.edit().clear();
+            SharedPreferences.Editor edit = preferences.edit();
+            edit.clear().commit();
             findNavController(v).navigate(R.id.action_navigation_home_to_loginActivity);
 
         });

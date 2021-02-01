@@ -17,11 +17,11 @@ public class HabitacionesViewHolder extends RecyclerView.ViewHolder {
     TextView tv_precio,tv_tipo_habitacion,tv_descripcion,tv_nro_camas;
     public HabitacionesViewHolder(@NonNull View itemView) {
         super(itemView);
-        btnInfo = itemView.findViewById(R.id.item_btn_ver_habitacion);
-        image_habitacion = itemView.findViewById(R.id.item_img_habitacion);
-        tv_precio = itemView.findViewById(R.id.item_precio_habitacion);
-        tv_tipo_habitacion = itemView.findViewById(R.id.item_tipo_habitacion);
-        tv_descripcion = itemView.findViewById(R.id.item_descripcion_habitacion);
-        tv_nro_camas = itemView.findViewById(R.id.item_nrcamas_habitacion);
+        btnInfo = itemView.findViewById(R.id.item_btn_ver_habitacion_promocion);
+        image_habitacion = itemView.findViewById(R.id.item_img_habitacion_promocion);
+        tv_precio = itemView.findViewById(R.id.item_precio_habitacion_promocion);
+        tv_tipo_habitacion = itemView.findViewById(R.id.item_tipo_habitacion_promocion);
+        tv_descripcion = itemView.findViewById(R.id.item_descripcion_habitacion_promocion);
+        tv_nro_camas = itemView.findViewById(R.id.item_nrcamas_habitacion_promocion);
     }
 }

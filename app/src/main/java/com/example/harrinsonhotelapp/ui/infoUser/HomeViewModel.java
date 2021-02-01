@@ -1,13 +1,11 @@
-package com.example.harrinsonhotelapp.ui.home;
+package com.example.harrinsonhotelapp.ui.infoUser;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.harrinsonhotelapp.api.HotelHarrinsonService;
 import com.example.harrinsonhotelapp.model.Reserva;
 
-import java.util.Collection;
 import java.util.List;
 
 import retrofit2.Call;

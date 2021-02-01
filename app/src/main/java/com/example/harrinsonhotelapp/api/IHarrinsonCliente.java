@@ -32,4 +32,7 @@ public interface IHarrinsonCliente {
     @GET("reservas/huesped/{id}")
     Call<List<Reserva>>findAllHistorial(@Path("id")int id);
 
+    @GET("habitaciones/promociones")
+    Call<List<Habitacion>>findAllPromocion();
+
 }

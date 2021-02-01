@@ -4,76 +4,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:background="@drawable/fondohabitacion"
-    tools:context=".ui.dashboard.DashboardFragment">
+
+    android:background="@drawable/fondohabitacion"
+    tools:context=".ui.reserva.DashboardFragment">
+
 
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="#AD050101"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent">
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="80dp">
+            android:layout_height="80dp"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="vertical"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
-                    android:textColor="@color/color_claro_hotel"
                     android:layout_height="wrap_content"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:paddingTop="4dp"
                     android:layout_gravity="center_horizontal"
+                    android:paddingTop="4dp"
                     android:text="Check-In"
-                    />
+                    android:textColor="@color/color_claro_hotel"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:paddingTop="5dp"
-                    android:textSize="18sp"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="@color/color_claro_hotel"
                     android:layout_height="wrap_content"
-                    android:text="20-01-2021"
-                    />
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="5dp"
+                    android:id="@+id/tv_fecha_inicio_dashbord"
+                    android:textColor="@color/color_claro_hotel"
+                    android:textSize="18sp" />
             </LinearLayout>
-
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_baseline_date_range_24"
+                android:backgroundTint="@color/color_claro_hotel"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/bt_range_date"
+                android:layout_height="wrap_content"
+                />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="vertical"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/color_claro_hotel"
-                    android:layout_height="wrap_content"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:paddingTop="4dp"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Check-Out"
-                    />
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:paddingTop="5dp"
-                    android:textSize="18sp"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="@color/color_claro_hotel"
                     android:layout_height="wrap_content"
-                    android:text="29-01-2021"
-                    />
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="4dp"
+                    android:text="Check-Out"
+                    android:textColor="@color/color_claro_hotel"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="5dp"
+                    android:id="@+id/tv_fecha_final_dashbord"
+                    android:textColor="@color/color_claro_hotel"
+                    android:textSize="18sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -89,6 +98,8 @@ android:background="@drawable/fondohabitacion"
             android:text="Buscar Habitacion"
             android:textAlignment="center"
             android:textSize="20sp" />
+
+
     </LinearLayout>
 
 
