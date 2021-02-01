@@ -30,7 +30,7 @@ SharedPreferences preferences;
 
 AlertDialog dialog;
     DateRangeCalendarView calendar;
-    Button btn_filter_range;
+
 
 
 
@@ -49,13 +49,10 @@ AlertDialog dialog;
 
         View view = layoutInflater.inflate(R.layout.item_filter_range_picker,null);
         calendar = view.findViewById(R.id.calendar);
-        btn_filter_range = view.findViewById(R.id.btn_filter_range);
-      
+
         calendar.setCalendarListener(calendarListener);
 
-        btn_filter_range.setOnClickListener(v -> {
-                dialog.dismiss();
-        });
+
         //DESDE DONDE EMPEZARA
         final Calendar startMonth = Calendar.getInstance();
         final Calendar endMonth = (Calendar) startMonth.clone();

@@ -72,8 +72,6 @@ public class NotificationsViewModel extends AndroidViewModel {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.item_filter_range_picker,null);
         calendar = view.findViewById(R.id.calendar);
-        btn_close = view.findViewById(R.id.btn_filter_range);
-
 
         calendar.setCalendarListener(calendarListener);
 

@@ -58,6 +58,7 @@ public class Lista_Habitacion_Fragment extends Fragment implements HabitacionDet
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         preferences = getContext().getSharedPreferences("datos", Context.MODE_PRIVATE);
+
         habitacionViewModel =
                 new ViewModelProvider(this).get(HabitacionViewModel.class);
 
@@ -67,12 +68,13 @@ public class Lista_Habitacion_Fragment extends Fragment implements HabitacionDet
         tv_filter = v.findViewById(R.id.tv_filter_habitacion);
         recyclerView=v.findViewById(R.id.rv_listado_habitacion);
         btn_filter = v.findViewById(R.id.btnf_filter);
+
+//        filtrar por tipo de habitacion
         addDatetoFilter();
 
         btn_filter.setOnClickListener(v1 -> habitacionViewModel.ShowDialog(getContext()));
 
         RequestFilterHabitacion filterHabitacion = new RequestFilterHabitacion();
-
 
         f_inicio = preferences.getString("f_inicio",null);
         f_final = preferences.getString("f_final",null);
@@ -82,8 +84,10 @@ public class Lista_Habitacion_Fragment extends Fragment implements HabitacionDet
         filterHabitacion.setStart(f_inicio);
         filterHabitacion.setFinish(f_final);
 
+
         habitacionViewModel.filterHabitacionPorFecha(filterHabitacion);
         adapter = new HabitacionesAdapter(getContext(),this);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         settingAnimation();
         
@@ -95,6 +99,7 @@ public class Lista_Habitacion_Fragment extends Fragment implements HabitacionDet
         habitacionViewModel.listMutableLiveData.observe(getViewLifecycleOwner(), habitacions -> {
 
             settingAnimation();
+
             List<Habitacion>nuevaListaHabitacion = habitacions.stream().filter(habitacion -> !habitacion.isPromocion()).collect(Collectors.toList());
             Toast.makeText(getContext(),"total habitaciones "+ nuevaListaHabitacion.size(),Toast.LENGTH_LONG).show();
         adapter.setList(nuevaListaHabitacion);

@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -19,10 +20,12 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.archit.calendardaterangepicker.customviews.DateRangeCalendarView;
 import com.example.harrinsonhotelapp.R;
 import com.example.harrinsonhotelapp.api.HotelHarrinsonService;
 import com.example.harrinsonhotelapp.model.Habitacion;
 import com.example.harrinsonhotelapp.request.RequestFilterHabitacion;
+import com.example.harrinsonhotelapp.utils.CalendarListener;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.Calendar;
@@ -35,26 +38,20 @@ import retrofit2.Response;
 
 public class HabitacionViewModel  extends AndroidViewModel {
 
-    AlertDialog alertDialog;
+    SharedPreferences preferences;
 
-    TextView tv_dia_inicio, tv_dia_final;
-    TextView tv_mes_inicio, tv_mes_final;
-    TextView tv_year_inicio, tv_year_final;
+    AlertDialog dialog;
+    DateRangeCalendarView calendar;
 
+
+
+
+    public MutableLiveData<String>mutableFechaInicio = new MutableLiveData<>();
+    public  MutableLiveData<String>mutableFechaFinal = new MutableLiveData<>();
 
     MutableLiveData<List<Habitacion>>listMutableLiveData = new MutableLiveData<>();
-    Button filter_search,filter_close;
-    MaterialCardView c_inicio,c_final;
-    String MES[] = {"ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"};
 
-    Calendar calendar = Calendar.getInstance();
-    DatePickerDialog pickerDialog;
-    //    para fechas
-    private int dia_inicio, mes_inicio, año_inicio;
-    private int dia_final, mes_final, año_final;
-    String strfechaInicio, strfechaFinal;
-    int calculardia1 = 0, calculardia2 = 0, total_dias;
-    SharedPreferences preferences ;
+
     public HabitacionViewModel(@NonNull Application application) {
         super(application);
     }
@@ -66,6 +63,7 @@ public class HabitacionViewModel  extends AndroidViewModel {
         responseHabitacion.enqueue(new Callback<List<Habitacion>>() {
             @Override
             public void onResponse(Call<List<Habitacion>> call, Response<List<Habitacion>> response) {
+
                 if (response.isSuccessful()){
                     listMutableLiveData.setValue(response.body());
 
@@ -89,131 +87,72 @@ public class HabitacionViewModel  extends AndroidViewModel {
 
 
 
-
-
-
-
-
-
-
-
     public void ShowDialog(Context context){
 
         preferences = context.getSharedPreferences("datos",Context.MODE_PRIVATE);
-
         LayoutInflater layoutInflater = LayoutInflater.from(context);
 
-        View view = layoutInflater.inflate(R.layout.dialog_filter,null);
-        filter_close = view.findViewById(R.id.item_filter_cerrar);
-        filter_search = view.findViewById(R.id.item_filter_buscar);
-        c_inicio = view.findViewById(R.id.card_calendar_inicio);
-        c_final = view.findViewById(R.id.card_calendar_final);
+        View view = layoutInflater.inflate(R.layout.item_filter_range_picker,null);
+        calendar = view.findViewById(R.id.calendar);
 
-        tv_dia_inicio=view.findViewById(R.id.home_dia_inicio);
-        tv_mes_inicio=view.findViewById(R.id.home_mes_inicio);
-        tv_year_inicio=view.findViewById(R.id.home_year_inicio);
-
-        tv_dia_final = view.findViewById(R.id.home_dia_final);
-        tv_mes_final = view.findViewById(R.id.home_mes_final);
-        tv_year_final = view.findViewById(R.id.home_year_final);
-
-        c_inicio.setOnClickListener(v -> fechaInicio(context));
-        c_final.setOnClickListener(v -> fechaFinal(context));
+        calendar.setCalendarListener(calendarListener);
 
 
+        //DESDE DONDE EMPEZARA
+        final Calendar startMonth = Calendar.getInstance();
+        final Calendar endMonth = (Calendar) startMonth.clone();
+        endMonth.add(Calendar.MONTH, 5);
 
-        filter_search.setOnClickListener(v -> {
-            RequestFilterHabitacion filterHabitacion = new RequestFilterHabitacion();
-            total_dias = calculardia2 - calculardia1;
+//        bloquear los dias antes  y un rango limitado
+        final Calendar startDateSelectable = (Calendar) startMonth.clone();
+        startDateSelectable.add(Calendar.DATE, 0);
+        final Calendar endDateSelectable = (Calendar) endMonth.clone();
+        endDateSelectable.add(Calendar.DATE, 0);
 
-            SharedPreferences.Editor editor = preferences.edit()
-                    .putString("f_inicio",strfechaInicio)
-                    .putString("f_final",strfechaFinal)
-                    .putInt("total_dias",total_dias);
-            editor.commit();
+        calendar.setSelectableDateRange(startDateSelectable, endDateSelectable);
 
-            filterHabitacion.setFinish(strfechaFinal);
-            filterHabitacion.setStart(strfechaInicio);
-            filterHabitacionPorFecha(filterHabitacion);
-            alertDialog.dismiss();
-        });
-
-        filter_close.setOnClickListener(v -> {
-            alertDialog.dismiss();
-        });
-         alertDialog = new AlertDialog.Builder(context)
+        dialog   = new AlertDialog.Builder(context)
                 .setView(view)
                 .create();
-        alertDialog.show();
-    }
-
-    void  fechaInicio(Context context){
-
-        c_inicio.setOnClickListener(v -> {
-            dia_inicio = calendar.get(Calendar.DAY_OF_YEAR);
-            mes_inicio = calendar.get(Calendar.MONTH);
-            año_inicio = calendar.get(Calendar.YEAR);
-            pickerDialog = new DatePickerDialog(context, (view, year, month, dayOfMonth) -> {
-                if ((month + 1) < 10) {
-                    strfechaInicio = (year + "-" + ("0" + (month + 1)) + "-" + dayOfMonth);
-                } else {
-                    strfechaInicio = (year + "-" + (month + 1) + "-" + dayOfMonth);
-                }
-                calculardia1 = dayOfMonth;
-                enviarValoresFechaInicial(dayOfMonth, month, year);
-            },año_inicio,mes_inicio,dia_inicio);
-            pickerDialog.getDatePicker().setMinDate(new Date().getTime());
-            pickerDialog.show();
-        });
-    }
-
-    void  fechaFinal(Context context){
-
-        c_final.setOnClickListener(v -> {
-            dia_final = calendar.get(Calendar.DAY_OF_YEAR);
-            mes_final = calendar.get(Calendar.MONTH);
-            año_final = calendar.get(Calendar.YEAR);
-            pickerDialog = new DatePickerDialog(context, (view, year, month, dayOfMonth) -> {
-                if ((month + 1) < 10) {
-                    strfechaFinal = (year + "-" + ("0" + (month + 1)) + "-" + dayOfMonth);
-                } else {
-                    strfechaFinal = (year + "-" + (month + 1) + "-" + dayOfMonth);
-                }
-
-                calculardia2 = dayOfMonth;
-                enviarValoresFechaFinal(dayOfMonth, month, year);
-            },año_final,mes_final,dia_final);
-            pickerDialog.getDatePicker().setMinDate(new Date().getTime());
-            pickerDialog.show();
-        });
+        dialog.show();
     }
 
 
-    private void enviarValoresFechaFinal(int dias, int mes, int year) {
-
-        tv_mes_final.setText(MES[mes]);
-        if (dias < 10) {
-            tv_dia_final.setText("0" + String.valueOf(dias));
-        } else {
-            tv_dia_final.setText(String.valueOf(dias));
+    public CalendarListener calendarListener = new CalendarListener() {
+        @Override
+        public void onFirstDateSelected(Calendar startDate) {
         }
-        tv_year_final.setText(String.valueOf(year));
-    }
+
+        @Override
+        public void onDateRangeSelected(Calendar startDate, Calendar endDate) {
+
+            int diaInicio = startDate.get(Calendar.DAY_OF_YEAR);
+            int diafinal=  endDate.get(Calendar.DAY_OF_YEAR);
+
+            int diferencia= diafinal - diaInicio;
+
+            String inicioParse = DateFormat.format("dd-MM-yyyy",startDate.getTime()).toString();
+            String finalPase = DateFormat.format("dd-MM-yyyy",endDate.getTime()).toString();
 
 
-    private void enviarValoresFechaInicial(int dias, int mes, int year) {
+            String iniciobd =DateFormat.format("yyyy-MM-dd",startDate.getTime()).toString();
+            String finbd =DateFormat.format("yyyy-MM-dd",endDate.getTime()).toString();
 
+            SharedPreferences.Editor editor = preferences.edit()
+                    .putInt("total_dias",diferencia)
+                    .putString("f_inicio",iniciobd)
+                    .putString("f_final",finbd);
+            editor.commit();
 
-        tv_mes_inicio.setText(MES[mes]);
-        if (dias < 10) {
-            tv_dia_inicio.setText("0" + String.valueOf(dias));
-        } else {
-            tv_dia_inicio.setText(String.valueOf(dias));
+            RequestFilterHabitacion filterHabitacion = new RequestFilterHabitacion();
+
+            filterHabitacion.setFinish(finbd);
+            filterHabitacion.setStart(iniciobd);
+            filterHabitacionPorFecha(filterHabitacion);
+            mutableFechaFinal.setValue(finalPase);
+            mutableFechaInicio.setValue(inicioParse);
+
         }
-        tv_year_inicio.setText(String.valueOf(year));
-
-
-    }
-
+    };
 
 }

@@ -24,15 +24,5 @@
 
         tools:ignore="MissingConstraints"></com.archit.calendardaterangepicker.customviews.DateRangeCalendarView>
 
-    <Button
-        android:id="@+id/btn_filter_range"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="@color/amarillo_hotel"
-        android:drawableLeft="@drawable/ic_close"
-        android:text="close"
-        custom:layout_constraintEnd_toEndOf="parent"
-        custom:layout_constraintStart_toStartOf="parent"
-        custom:layout_constraintTop_toBottomOf="@+id/calendar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
