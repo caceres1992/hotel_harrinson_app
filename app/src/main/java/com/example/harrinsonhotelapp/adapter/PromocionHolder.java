@@ -17,7 +17,11 @@ public class PromocionHolder extends RecyclerView.ViewHolder {
             tv_tipo_habitacion_promocion,
             tv_descripcion_promocion,
             tv_nro_camas_promocion,
-            tv_desc_promopcion;
+            tv_desc_promopcion
+            ;
+
+
+
     public PromocionHolder(@NonNull View itemView) {
         super(itemView);
                 tv_precio_promocion =itemView.findViewById(R.id.item_precio_habitacion_promocion);
@@ -28,5 +32,7 @@ public class PromocionHolder extends RecyclerView.ViewHolder {
 
                 btnInfo_promocion = itemView.findViewById(R.id.item_btn_ver_habitacion_promocion);
                 image_habitacion_promocion = itemView.findViewById(R.id.item_img_habitacion_promocion);
+
+
     }
 }

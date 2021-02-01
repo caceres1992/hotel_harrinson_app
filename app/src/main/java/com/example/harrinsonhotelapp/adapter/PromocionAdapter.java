@@ -8,6 +8,8 @@ import android.text.style.StrikethroughSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +27,7 @@ public class PromocionAdapter  extends RecyclerView.Adapter<PromocionHolder> {
 
     List<Habitacion> habitacionList;
     Context context;
+    View view;
     HabitacionPromocion promocion;
 
     public PromocionAdapter(Context context,HabitacionPromocion promocion) {
@@ -70,25 +73,22 @@ public class PromocionAdapter  extends RecyclerView.Adapter<PromocionHolder> {
 
         holder.btnInfo_promocion.setOnClickListener(v->{
 
+                int id, ncamas;
+                double precio,des;
+                String strDescripcion,strTipoHabitacion,strImg;
+
+                id = habitacion.getId();
+                precio = habitacion.getTipoHabitacion().getPrecio();
+                des = habitacion.getDescuento();
+                strTipoHabitacion = habitacion.getTipoHabitacion().getNombre();
+                strImg = habitacion.getImg();
+                strDescripcion =  habitacion.getDescripcion();
+                ncamas = habitacion.getTipoHabitacion().getNroCamas();
 
 
-            int id, ncamas;
-            double precio,des;
-            String strDescripcion,strTipoHabitacion,strImg;
-
-            id = habitacion.getId();
-            precio = habitacion.getTipoHabitacion().getPrecio();
-            des = habitacion.getDescuento();
-            strTipoHabitacion = habitacion.getTipoHabitacion().getNombre();
-            strImg = habitacion.getImg();
-            strDescripcion =  habitacion.getDescripcion();
-            ncamas = habitacion.getTipoHabitacion().getNroCamas();
-
-
-            promocion.onEventDetailPromocion(id,
-                    precio,des,strTipoHabitacion,ncamas,strDescripcion,strImg
-            );
-
+                promocion.onEventDetailPromocion(id,
+                        precio,des,strTipoHabitacion,ncamas,strDescripcion,strImg
+                );
         });
     }
 

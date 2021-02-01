@@ -67,7 +67,9 @@ public class Lista_Habitacion_Fragment extends Fragment implements HabitacionDet
         recyclerView=v.findViewById(R.id.rv_listado_habitacion);
         btn_filter = v.findViewById(R.id.btnf_filter);
         addDatetoFilter();
+
         btn_filter.setOnClickListener(v1 -> habitacionViewModel.ShowDialog(getContext()));
+
         RequestFilterHabitacion filterHabitacion = new RequestFilterHabitacion();
         f_inicio = preferences.getString("f_inicio",null);
         f_final = preferences.getString("f_final",null);
@@ -88,9 +90,13 @@ public class Lista_Habitacion_Fragment extends Fragment implements HabitacionDet
 
 
         habitacionViewModel.listMutableLiveData.observe(getViewLifecycleOwner(), habitacions -> {
+
             settingAnimation();
-        adapter.setList(habitacions);
+            List<Habitacion>nuevaListaHabitacion = habitacions.stream().filter(habitacion -> !habitacion.isPromocion()).collect(Collectors.toList());
+            Toast.makeText(getContext(),"total habitaciones "+ nuevaListaHabitacion.size(),Toast.LENGTH_LONG).show();
+        adapter.setList(nuevaListaHabitacion);
         recyclerView.setAdapter(adapter);
+
         });
         return v;
     }
@@ -147,17 +153,18 @@ public class Lista_Habitacion_Fragment extends Fragment implements HabitacionDet
                 habitacionViewModel.listMutableLiveData.observe(getViewLifecycleOwner(), habitacions -> {
                     settingAnimation();
                     List<Habitacion>nuevaListaFiltrada;
+
                     nuevaListaFiltrada = habitacions.stream().filter(habitacion -> habitacion.getTipoHabitacion().getNombre().contains(adapterString.getItem(position)))
+                            .filter(habitacion -> !habitacion.isPromocion())
                             .collect(Collectors.toList());
 
                     if (nuevaListaFiltrada.size()!=0){
                         adapter.setList(nuevaListaFiltrada);
-                        recyclerView.setAdapter(adapter);
                     }else {
-                        adapter.setList(habitacions);
-                        recyclerView.setAdapter(adapter);
-                    }
 
+                        adapter.setList(habitacions.stream().filter(habitacion -> !habitacion.isPromocion()).collect(Collectors.toList()));
+                    }
+                    recyclerView.setAdapter(adapter);
 
 
                 });

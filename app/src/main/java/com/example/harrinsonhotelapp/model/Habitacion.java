@@ -28,7 +28,7 @@ public class Habitacion {
 
     @SerializedName("promocion")
     @Expose
-    Boolean promocion;
+    boolean promocion;
     @SerializedName("estado")
     @Expose
     private String estado;
@@ -45,11 +45,11 @@ public class Habitacion {
         this.descuento = descuento;
     }
 
-    public Boolean getPromocion() {
+    public boolean isPromocion() {
         return promocion;
     }
 
-    public void setPromocion(Boolean promocion) {
+    public void setPromocion(boolean promocion) {
         this.promocion = promocion;
     }
 
