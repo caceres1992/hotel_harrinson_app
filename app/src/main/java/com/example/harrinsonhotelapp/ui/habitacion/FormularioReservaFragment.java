@@ -7,17 +7,13 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.preference.Preference;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.harrinsonhotelapp.R;
 import com.example.harrinsonhotelapp.model.Habitacion;
@@ -54,17 +50,17 @@ TextView precio,descripcion,fecha_incio,fecha_final,total_dias,precio_total,nr_c
         View v = inflater.inflate(R.layout.fragment_formulario_reserva, container, false);
         preferences = getContext().getSharedPreferences("datos", Context.MODE_PRIVATE);
         btn_back=v.findViewById(R.id.btn_back_form);
-        cbxEstacionamiento = v.findViewById(R.id.cbx_reserva_estacionamiento);
-        precio = v.findViewById(R.id.rserva_precio_habitacion);
-        descripcion = v.findViewById(R.id.reserva_descripcion);
-        fecha_final = v.findViewById(R.id.reserva_fecha_final);
-        fecha_incio= v.findViewById(R.id.reserva_fecha_inicio);
-        precio_total= v.findViewById(R.id.reserva_precio_total);
-        total_dias = v.findViewById(R.id.reserva_total_dias);
-        nr_camas = v.findViewById(R.id.reserva_cant_camas);
+        cbxEstacionamiento = v.findViewById(R.id.cbx_reserva_estacionamiento_promocion);
+        precio = v.findViewById(R.id.rserva_precio_habitacion_promocion);
+        descripcion = v.findViewById(R.id.reserva_descripcion_promocion);
+        fecha_final = v.findViewById(R.id.reserva_fecha_final_promocion);
+        fecha_incio= v.findViewById(R.id.reserva_fecha_inicio_promocion);
+        precio_total= v.findViewById(R.id.reserva_precio_total_promocion);
+        total_dias = v.findViewById(R.id.reserva_total_dias_promocion);
+        nr_camas = v.findViewById(R.id.reserva_cant_camas_promocion);
         t_habitacion=v.findViewById(R.id.reserva_tipo_habitacion);
-        placa = v.findViewById(R.id.reserva_placa_vehiculo);
-        btn_reservar= v.findViewById(R.id.btn_reserva_finalizada);
+        placa = v.findViewById(R.id.reserva_placa_vehiculo_promocion);
+        btn_reservar= v.findViewById(R.id.btn_reserva_finalizada_promocion);
 
         setValues();
 

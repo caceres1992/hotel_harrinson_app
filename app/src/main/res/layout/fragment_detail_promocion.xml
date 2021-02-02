@@ -106,10 +106,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:text="Ahora S/100"
+        android:background="#8DEDC13B"
+
+        android:padding="5dp"
+        android:text="ahora S/100"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_detalle_precio_promocion"
         app:layout_constraintStart_toEndOf="@+id/tv_detalle_precio_promocion"
-        app:layout_constraintTop_toBottomOf="@+id/detalle_img_promocion" />
+        app:layout_constraintTop_toTopOf="@+id/tv_detalle_precio_promocion" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

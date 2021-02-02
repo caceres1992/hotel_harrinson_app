@@ -27,6 +27,8 @@ public class RegisterViewModel  extends AndroidViewModel {
         HotelHarrinsonService.getInstance().getHarrinsonCliente().doRegister(huesped).enqueue(new Callback<Huesped>() {
             @Override
             public void onResponse(Call<Huesped> call, Response<Huesped> response) {
+
+
                 if (response.isSuccessful()){
                     Toast.makeText(getApplication(),"Creado con exito",Toast.LENGTH_LONG).show();
                 }else {

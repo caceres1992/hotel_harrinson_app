@@ -101,5 +101,23 @@
         android:id="@+id/detailPromocionFragment"
         android:name="com.example.harrinsonhotelapp.ui.promocion.DetailPromocionFragment"
         android:label="fragment_detail_promocion"
-        tools:layout="@layout/fragment_detail_promocion" />
+        tools:layout="@layout/fragment_detail_promocion" >
+        <action
+            android:id="@+id/action_detailPromocionFragment_to_formularioReservaPromocionFragment"
+            app:destination="@id/formularioReservaPromocionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/formularioReservaPromocionFragment"
+        android:name="com.example.harrinsonhotelapp.ui.promocion.FormularioReservaPromocionFragment"
+        android:label="fragment_formulario_reserva_promocion"
+        tools:layout="@layout/fragment_formulario_reserva_promocion" >
+        <action
+            android:id="@+id/action_formularioReservaPromocionFragment_to_resumenPromocionFragment"
+            app:destination="@id/resumenPromocionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resumenPromocionFragment"
+        android:name="com.example.harrinsonhotelapp.ui.promocion.ResumenPromocionFragment"
+        android:label="fragment_resumen_promocion"
+        tools:layout="@layout/fragment_resumen_promocion" />
 </navigation>

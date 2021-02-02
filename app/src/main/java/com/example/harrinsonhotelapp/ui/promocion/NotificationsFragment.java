@@ -1,5 +1,6 @@
 package com.example.harrinsonhotelapp.ui.promocion;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -35,12 +36,21 @@ public class NotificationsFragment extends Fragment implements HabitacionPromoci
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         notificationsViewModel =
                 new ViewModelProvider(this).get(NotificationsViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
+
+        preferences = getContext().getSharedPreferences("datos", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.remove("f_inicio").remove("f_final").commit();
+
+
         tv_fecha_promocion = root.findViewById(R.id.fecha_promocion);
         recyclerView = root.findViewById(R.id.rv_listado_promociones);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         adapter = new PromocionAdapter(getContext(),this);
 
         tv_fecha_promocion.setOnClickListener(v -> notificationsViewModel.showDialog(getContext()));
@@ -51,7 +61,9 @@ public class NotificationsFragment extends Fragment implements HabitacionPromoci
         requestFilterHabitacion.setStart("2021-02-01");
         requestFilterHabitacion.setFinish("2021-02-02");
         notificationsViewModel.filterHabitacionPorFecha(requestFilterHabitacion);
+
         notificationsViewModel.mutableLiveDataPromocion.observe(getViewLifecycleOwner(), habitacions -> {
+
             settingAnimation();
 
             List<Habitacion>nuevaListaPromocion;
@@ -77,5 +89,14 @@ public class NotificationsFragment extends Fragment implements HabitacionPromoci
     @Override
     public void onEventDetailPromocion(int id, double precio, double desc, String tipoHabitacion, int nrcamas, String descripcion, String img) {
 
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt("id_habitacion",id)
+                        .putString("precio_habitacion",String.valueOf(precio))
+                        .putString("descuento",String.valueOf(desc))
+                        .putInt("camas",nrcamas)
+                        .putString("habitacion",tipoHabitacion)
+                        .putString("description",descripcion)
+                        .putString("img",img)
+                        .commit();
     }
 }

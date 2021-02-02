@@ -18,6 +18,7 @@ import com.archit.calendardaterangepicker.customviews.DateRangeCalendarView;
 import com.example.harrinsonhotelapp.R;
 import com.example.harrinsonhotelapp.api.HotelHarrinsonService;
 import com.example.harrinsonhotelapp.model.Habitacion;
+import com.example.harrinsonhotelapp.model.Reserva;
 import com.example.harrinsonhotelapp.request.RequestFilterHabitacion;
 import com.example.harrinsonhotelapp.utils.CalendarListener;
 
@@ -36,7 +37,6 @@ public class NotificationsViewModel extends AndroidViewModel {
    public MutableLiveData<List<Habitacion>> mutableLiveDataPromocion = new MutableLiveData<>();
     Button btn_close;
    public MutableLiveData<String> fecha_inicio = new MutableLiveData<>();
-    MutableLiveData<String> fecha_final = new MutableLiveData<>();
 
     public NotificationsViewModel(@NonNull Application application) {
         super(application);
@@ -67,10 +67,18 @@ public class NotificationsViewModel extends AndroidViewModel {
 
 
 
+
+
+
+
     public void showDialog(Context context){
+
         preferences = context.getSharedPreferences("datos",Context.MODE_PRIVATE);
+
         LayoutInflater layoutInflater = LayoutInflater.from(context);
+
         View view = layoutInflater.inflate(R.layout.item_filter_range_picker,null);
+
         calendar = view.findViewById(R.id.calendar);
 
         calendar.setCalendarListener(calendarListener);
@@ -82,6 +90,9 @@ public class NotificationsViewModel extends AndroidViewModel {
     }
 
 
+
+
+
     public CalendarListener calendarListener = new CalendarListener() {
         @Override
         public void onFirstDateSelected(Calendar startDate) {
@@ -91,6 +102,12 @@ public class NotificationsViewModel extends AndroidViewModel {
         @Override
         public void onDateRangeSelected(Calendar startDate, Calendar endDate) {
 
+
+            int diaInicio = startDate.get(Calendar.DAY_OF_YEAR);
+            int diafinal=  endDate.get(Calendar.DAY_OF_YEAR);
+
+            int diferencia= diafinal - diaInicio;
+
             String fecha_inicioCast  = DateFormat.format("dd-MM-yyyy",startDate.getTime()).toString();
             String fecha_finalCast  = DateFormat.format("dd-MM-yyyy",endDate.getTime()).toString();
 
@@ -99,23 +116,45 @@ public class NotificationsViewModel extends AndroidViewModel {
 
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("f_inicio",inicioFilter)
-                    .putString("f_final",finalFilter);
+                    .putString("f_final",finalFilter)
+                    .putInt("total_dias",diferencia)
+            ;
+
             editor.commit();
-
-
             RequestFilterHabitacion filterHabitacion = new RequestFilterHabitacion();
-
             filterHabitacion.setStart(inicioFilter);
             filterHabitacion.setFinish(finalFilter);
             filterHabitacionPorFecha(filterHabitacion);
 
-
             String concatFecha = fecha_inicioCast +" / "+ fecha_finalCast;
                     fecha_inicio.setValue(concatFecha);
-
-                Toast.makeText(getApplication(),"fecha inicio"+fecha_inicioCast,Toast.LENGTH_LONG).show();
         }
     };
 
+
+
+
+
+
+
+    public void reservarPromocion(Reserva reserva){
+        Call<Reserva> reservaCall = HotelHarrinsonService.getInstance().getHarrinsonCliente().doReserva(reserva);
+        reservaCall.enqueue(new Callback<Reserva>() {
+            @Override
+            public void onResponse(Call<Reserva> call, Response<Reserva> response) {
+                    if (response.isSuccessful()){
+                        Toast.makeText(getApplication(),"Promocion Reserva",Toast.LENGTH_LONG).show();
+                    }else {
+                        Toast.makeText(getApplication(),"Error con code : " + response.code(),Toast.LENGTH_LONG).show();
+                    }
+            }
+
+            @Override
+            public void onFailure(Call<Reserva> call, Throwable t) {
+                Toast.makeText(getApplication(),"Error de tiempo de esperara " + t.getMessage() ,Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
 
 }

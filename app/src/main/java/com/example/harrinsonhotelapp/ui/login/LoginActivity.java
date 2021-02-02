@@ -31,6 +31,7 @@ Huesped huesped;
 TextView errorLogin;
 LoginViewModel loginViewModel;
 SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,7 @@ SharedPreferences preferences;
         onClick();
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
     }
+
 
 
     private void init() {

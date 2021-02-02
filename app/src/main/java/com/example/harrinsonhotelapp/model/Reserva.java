@@ -65,6 +65,15 @@ public class Reserva {
     }
 
 
+    public Reserva(String fechaInicio, String fechaFinal, String placaVehiculo, Double descuento, Double precioTotal, Huesped huesped, Habitacion habitacion) {
+        this.fechaInicio = fechaInicio;
+        this.fechaFinal = fechaFinal;
+        this.placaVehiculo = placaVehiculo;
+        this.descuento = descuento;
+        this.precioTotal = precioTotal;
+        this.huesped = huesped;
+        this.habitacion = habitacion;
+    }
 
     public Long getId() {
         return id;

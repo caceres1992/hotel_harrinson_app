@@ -25,5 +25,5 @@
     <!--token para mapbox-->
     <string name="access_token" translatable="false">pk.eyJ1IjoiYTE4MTAwMDU0IiwiYSI6ImNram1kbWp2djAzeGcycHBlMTZrZm9zODIifQ.gqZCO2usbJavClx7E0ix4A</string>
     <string name="name_hotel">Hotel Harrinson a su Servicio</string>
-    <string name="ahora">Ahora %1$s</string>
+    <string name="ahora">ahora %1$s</string>
 </resources>

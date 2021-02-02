@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.habitacion.FormularioReservaFragment">
+    tools:context=".ui.promocion.FormularioReservaPromocionFragment">
 
     <androidx.appcompat.widget.Toolbar
 
-        android:id="@+id/toolbar9"
+        android:id="@+id/toolbarpromocion_reserva_formulario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
@@ -35,7 +35,7 @@
         android:textSize="23sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar9" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarpromocion_reserva_formulario" />
 
     <TextView
         android:id="@+id/rserva_precio_habitacion_promocion"
@@ -167,20 +167,22 @@
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="precio total"
-        app:layout_constraintStart_toStartOf="@+id/reserva_placa_vehiculo_promocion"
-        app:layout_constraintTop_toBottomOf="@+id/reserva_placa_vehiculo_promocion" />
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="Total a pagar  ->"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
         android:id="@+id/reserva_precio_total_promocion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
         android:text="S444"
-        app:layout_constraintEnd_toEndOf="@+id/reserva_placa_vehiculo_promocion"
-        app:layout_constraintTop_toBottomOf="@+id/reserva_placa_vehiculo_promocion" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView17"
+        app:layout_constraintEnd_toEndOf="@+id/reserva_descuento_promocion"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView17"
+        app:layout_constraintTop_toTopOf="@+id/textView17" />
 
     <Button
         android:id="@+id/btn_reserva_finalizada_promocion"
@@ -194,5 +196,48 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="Sub total  ->"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reserva_placa_vehiculo_promocion" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:text="descuento total ->"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/reserva_descuento_promocion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/reserva_tv_subtotal_promocion"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toTopOf="@+id/textView15" />
+
+    <TextView
+        android:id="@+id/reserva_tv_subtotal_promocion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/reserva_placa_vehiculo_promocion"
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/reserva_placa_vehiculo_promocion" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
