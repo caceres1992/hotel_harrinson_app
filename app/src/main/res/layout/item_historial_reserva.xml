@@ -9,20 +9,20 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:orientation="horizontal"
-
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/item_historial_precio_total"
@@ -63,8 +63,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:textSize="13sp"
                 android:text="@string/tipohabitacion"
+                android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/item_historial_precio_total" />
 
@@ -74,13 +74,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:textSize="9sp"
-                android:textColor="#f999"
-                android:drawablePadding="5sp"
                 android:drawableLeft="@drawable/ic_baseline_calendar_today_24"
+                android:drawablePadding="5sp"
                 android:text="@string/fecha_de_reserva"
+                android:textColor="#f999"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/item_historial_tipo_habitacion" />
+
+            <TextView
+                android:id="@+id/item_code_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawableLeft="@drawable/ic_barcode"
+                android:text="@string/code_bar"
+                android:drawablePadding="5sp"
+                android:textSize="12dp"
+                android:textColor="#f999"
+                app:layout_constraintStart_toStartOf="@+id/item_histororial_fecha"
+                app:layout_constraintTop_toBottomOf="@+id/item_histororial_fecha" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

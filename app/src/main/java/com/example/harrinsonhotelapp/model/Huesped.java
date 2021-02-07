@@ -47,11 +47,12 @@ public class Huesped {
     }
 
 
-    public Huesped(String nombre, String apellido, String password, String correo) {
+    public Huesped(String nombre, String apellido, String password, String correo,String dni) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.password = password;
         this.correo = correo;
+        this.documento = dni;
     }
 
     public Integer getId() {

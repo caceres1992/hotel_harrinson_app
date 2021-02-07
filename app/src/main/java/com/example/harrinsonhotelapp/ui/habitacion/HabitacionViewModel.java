@@ -36,7 +36,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HabitacionViewModel  extends AndroidViewModel {
+public class HabitacionViewModel extends AndroidViewModel {
 
     SharedPreferences preferences;
 
@@ -44,12 +44,10 @@ public class HabitacionViewModel  extends AndroidViewModel {
     DateRangeCalendarView calendar;
 
 
+    public MutableLiveData<String> mutableFechaInicio = new MutableLiveData<>();
+    public MutableLiveData<String> mutableFechaFinal = new MutableLiveData<>();
 
-
-    public MutableLiveData<String>mutableFechaInicio = new MutableLiveData<>();
-    public  MutableLiveData<String>mutableFechaFinal = new MutableLiveData<>();
-
-    MutableLiveData<List<Habitacion>>listMutableLiveData = new MutableLiveData<>();
+    MutableLiveData<List<Habitacion>> listMutableLiveData = new MutableLiveData<>();
 
 
     public HabitacionViewModel(@NonNull Application application) {
@@ -57,42 +55,36 @@ public class HabitacionViewModel  extends AndroidViewModel {
     }
 
 
-    public void filterHabitacionPorFecha(RequestFilterHabitacion filter){
+    public void filterHabitacionPorFecha(RequestFilterHabitacion filter) {
 
         Call<List<Habitacion>> responseHabitacion = HotelHarrinsonService.getInstance().getHarrinsonCliente().doFilterHabitacion(filter);
         responseHabitacion.enqueue(new Callback<List<Habitacion>>() {
             @Override
             public void onResponse(Call<List<Habitacion>> call, Response<List<Habitacion>> response) {
 
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     listMutableLiveData.setValue(response.body());
 
-                }else {
-                    Toast.makeText(getApplication(),"codigo "+response.code(),Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplication(), "codigo " + response.code(), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Habitacion>> call, Throwable t) {
-                Toast.makeText(getApplication(),"tiempo de respuesta  "+ t.getCause().getMessage(),Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplication(),"tiempo de respuesta  "+ t.getCause().getMessage(),Toast.LENGTH_LONG).show();
             }
         });
 
     }
 
 
+    public void ShowDialog(Context context) {
 
-
-
-
-
-
-    public void ShowDialog(Context context){
-
-        preferences = context.getSharedPreferences("datos",Context.MODE_PRIVATE);
+        preferences = context.getSharedPreferences("datos", Context.MODE_PRIVATE);
         LayoutInflater layoutInflater = LayoutInflater.from(context);
 
-        View view = layoutInflater.inflate(R.layout.item_filter_range_picker,null);
+        View view = layoutInflater.inflate(R.layout.item_filter_range_picker, null);
         calendar = view.findViewById(R.id.calendar);
 
         calendar.setCalendarListener(calendarListener);
@@ -111,7 +103,7 @@ public class HabitacionViewModel  extends AndroidViewModel {
 
         calendar.setSelectableDateRange(startDateSelectable, endDateSelectable);
 
-        dialog   = new AlertDialog.Builder(context)
+        dialog = new AlertDialog.Builder(context)
                 .setView(view)
                 .create();
         dialog.show();
@@ -127,21 +119,21 @@ public class HabitacionViewModel  extends AndroidViewModel {
         public void onDateRangeSelected(Calendar startDate, Calendar endDate) {
 
             int diaInicio = startDate.get(Calendar.DAY_OF_YEAR);
-            int diafinal=  endDate.get(Calendar.DAY_OF_YEAR);
+            int diafinal = endDate.get(Calendar.DAY_OF_YEAR);
 
-            int diferencia= diafinal - diaInicio;
+            int diferencia = diafinal - diaInicio;
 
-            String inicioParse = DateFormat.format("dd-MM-yyyy",startDate.getTime()).toString();
-            String finalPase = DateFormat.format("dd-MM-yyyy",endDate.getTime()).toString();
+            String inicioParse = DateFormat.format("dd-MM-yyyy", startDate.getTime()).toString();
+            String finalPase = DateFormat.format("dd-MM-yyyy", endDate.getTime()).toString();
 
 
-            String iniciobd =DateFormat.format("yyyy-MM-dd",startDate.getTime()).toString();
-            String finbd =DateFormat.format("yyyy-MM-dd",endDate.getTime()).toString();
+            String iniciobd = DateFormat.format("yyyy-MM-dd", startDate.getTime()).toString();
+            String finbd = DateFormat.format("yyyy-MM-dd", endDate.getTime()).toString();
 
             SharedPreferences.Editor editor = preferences.edit()
-                    .putInt("total_dias",diferencia)
-                    .putString("f_inicio",iniciobd)
-                    .putString("f_final",finbd);
+                    .putInt("total_dias", diferencia)
+                    .putString("f_inicio", iniciobd)
+                    .putString("f_final", finbd);
             editor.commit();
 
             RequestFilterHabitacion filterHabitacion = new RequestFilterHabitacion();

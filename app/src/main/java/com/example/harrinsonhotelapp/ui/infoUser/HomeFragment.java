@@ -32,8 +32,8 @@ public class HomeFragment extends Fragment {
     Button btn_cerrar_session;
     HistorialAdapter adapter;
     RecyclerView recyclerView;
-    TextView tv_huesped_name,tv_huesped_lastname,tv_huesped_email;
-    String huesped_name,huesped_lastname,huesped_email;
+    TextView tv_huesped_name, tv_huesped_lastname, tv_huesped_email, tv_huesped_dni;
+    String huesped_name, huesped_lastname, huesped_email, huesped_dni;
     int huesped_id;
     private HomeViewModel homeViewModel;
 
@@ -43,11 +43,11 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         preferences = getContext().getSharedPreferences("datos", Context.MODE_PRIVATE);
 
-            initValues(root);
-                setValues();
+        initValues(root);
+        setValues();
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-        huesped_id = preferences.getInt("id_huesped",0);
-        Toast.makeText(getContext(),"id "+ huesped_id,Toast.LENGTH_LONG).show();
+        huesped_id = preferences.getInt("id_huesped", 0);
+        Toast.makeText(getContext(), "id " + huesped_id, Toast.LENGTH_LONG).show();
         homeViewModel.findAllHistorial(huesped_id);
         adapter = new HistorialAdapter(getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -71,27 +71,30 @@ public class HomeFragment extends Fragment {
     }
 
 
-    void initValues(View v){
+    void initValues(View v) {
         recyclerView = v.findViewById(R.id.rv_historial);
         tv_huesped_email = v.findViewById(R.id.home_huesped_email);
         tv_huesped_lastname = v.findViewById(R.id.home_huesped_apellido);
         tv_huesped_name = v.findViewById(R.id.home_huesped_name);
         btn_cerrar_session = v.findViewById(R.id.home_btn_logout);
+        tv_huesped_dni = v.findViewById(R.id.home_huesped_dni);
     }
 
-    void setValues(){
+    void setValues() {
 
-        huesped_email = getString(R.string.email,preferences.getString("email_huesped",null));
-        huesped_lastname =getString(R.string.apellido,preferences.getString("apellido_huesped",null));
-        huesped_name = getString(R.string.nombre,preferences.getString("nombre_huesped",null));
+        huesped_email = getString(R.string.email, preferences.getString("email_huesped", null));
+        huesped_lastname = getString(R.string.apellido, preferences.getString("apellido_huesped", null));
+        huesped_name = getString(R.string.nombre, preferences.getString("nombre_huesped", null));
+        huesped_dni = getString(R.string.dni, preferences.getString("dni_huesped", null));
 
         tv_huesped_name.setText(huesped_name);
         tv_huesped_email.setText(huesped_email);
         tv_huesped_lastname.setText(huesped_lastname);
+        tv_huesped_dni.setText(huesped_dni);
     }
 
-    void settingAnimation(){
-        LayoutAnimationController layoutAnimationController = AnimationUtils.loadLayoutAnimation(getContext(),R.anim.layou_slide_right);
+    void settingAnimation() {
+        LayoutAnimationController layoutAnimationController = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layou_slide_right);
         recyclerView.setLayoutAnimation(layoutAnimationController);
         recyclerView.scheduleLayoutAnimation();
     }

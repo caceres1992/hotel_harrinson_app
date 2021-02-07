@@ -46,6 +46,9 @@ public class Reserva {
     @Expose
     private String estado;
 
+    @SerializedName("codigoReserva")
+    @Expose
+    String codigoReserva;
 
     @SerializedName("huesped")
     @Expose
@@ -73,6 +76,14 @@ public class Reserva {
         this.precioTotal = precioTotal;
         this.huesped = huesped;
         this.habitacion = habitacion;
+    }
+
+    public String getCodigoReserva() {
+        return codigoReserva;
+    }
+
+    public void setCodigoReserva(String codigoReserva) {
+        this.codigoReserva = codigoReserva;
     }
 
     public Long getId() {

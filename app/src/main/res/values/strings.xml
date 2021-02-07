@@ -19,6 +19,7 @@
     <string name="nombre">Nombre : %1$s</string>
     <string name="apellido">Apellido : %1$s</string>
     <string name="email">Email : %1$s</string>
+    <string name="dni">Dni : %1$s</string>
     <string name="fecha_de_reserva"> %1$s - %2$s</string>
     <string name="precio_total">TOTAL : %1$s</string>
     <string name="stado_reserva">%1$s</string>
@@ -26,4 +27,5 @@
     <string name="access_token" translatable="false">pk.eyJ1IjoiYTE4MTAwMDU0IiwiYSI6ImNram1kbWp2djAzeGcycHBlMTZrZm9zODIifQ.gqZCO2usbJavClx7E0ix4A</string>
     <string name="name_hotel">Hotel Harrinson a su Servicio</string>
     <string name="ahora">ahora %1$s</string>
+    <string name="code_bar">Codigo de Reserva : %1$s </string>
 </resources>

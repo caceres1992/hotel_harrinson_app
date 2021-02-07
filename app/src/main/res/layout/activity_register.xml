@@ -41,24 +41,25 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ipt_register_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="nombre"
-            android:id="@+id/ipt_register_name"
             android:paddingBottom="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:textSize="14sp"
-                android:backgroundTint="@color/color_claro_hotel"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
+                android:backgroundTint="@color/color_claro_hotel"
+                android:inputType="text"
+                android:drawableRight="@drawable/ic_round_person"
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
             android:id="@+id/ipt_register_apellido"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Apellido"
             android:paddingBottom="5dp">
@@ -66,35 +67,53 @@
             <com.google.android.material.textfield.TextInputEditText
 
                 android:layout_width="match_parent"
-                android:textSize="14sp"
-                android:backgroundTint="@color/color_claro_hotel"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
+                android:backgroundTint="@color/color_claro_hotel"
+                android:inputType="text"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ipt_register_dni"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="DNI"
+
+            android:paddingBottom="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/color_claro_hotel"
+                android:inputType="text"
+                android:drawableRight="@drawable/ic_dni"
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ipt_register_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ipt_register_email"
             android:hint="Correo Electronico"
             android:paddingBottom="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
 
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:backgroundTint="@color/color_claro_hotel"
                 android:drawableEnd="@drawable/ic_baseline_email_24"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ipt_register_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            android:id="@+id/ipt_register_password"
             android:paddingBottom="5dp"
             app:passwordToggleEnabled="true">
 
@@ -109,21 +128,21 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ipt_register_repetir_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/color_claro_hotel"
             android:hint="Repetir Password"
             android:paddingBottom="5dp"
-            android:backgroundTint="@color/color_claro_hotel"
-            android:id="@+id/ipt_register_repetir_password"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
                 android:backgroundTint="@color/color_claro_hotel"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
@@ -149,13 +168,13 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@color/color_claro_hotel"
         android:padding="10dp"
+        android:text=" © 2021  Dekopi Todos los derechos reservados"
         android:textAlignment="center"
         android:textSize="12sp"
-        android:text=" © 2021  Dekopi Todos los derechos reservados"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/color_claro_hotel"
         app:layout_constraintStart_toStartOf="parent" />
 
 
