@@ -50,7 +50,8 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconIgnorePlacem
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconOffset;
 
-public class MapaActivity extends AppCompatActivity implements OnMapReadyCallback, MapboxMap.OnMapClickListener, PermissionsListener {
+public class MapaActivity extends AppCompatActivity implements
+        OnMapReadyCallback, MapboxMap.OnMapClickListener, PermissionsListener {
 
     private MapView mapView;
     private MapboxMap mapboxMap;
@@ -58,7 +59,7 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
     private PermissionsManager permissionsManager;
     private LocationComponent locationComponent;
 
-    // variables for calculating and drawing a route
+    // variables para calcular y trazar la ruta
     private DirectionsRoute currentRoute;
     private static final String TAG = "DirectionsActivity";
     private NavigationMapRoute navigationMapRoute;
@@ -91,6 +92,7 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public boolean onMapClick(@NonNull LatLng point) {
 
@@ -104,13 +106,13 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         getRoute(puntoOrigen, puntoDestino);
         btnnavigation.setEnabled(true);
-        btnnavigation.setBackgroundResource(R.color.mapbox_blue);
+        btnnavigation.setBackgroundColor(getColor(R.color.input_hotel));
 
         LatLngBounds latLngBounds = new LatLngBounds.Builder()
                 .include(locationOne) // primer Hotel
                 .include(locationTwo) // Segundo Hotel
                 .build();
-        mapboxMap.easeCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, 300), 5000);
+        mapboxMap.easeCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, 200), 5000);
         return true;
     }
 
@@ -162,22 +164,20 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(@NonNull MapboxMap mapboxMap) {
         this.mapboxMap = mapboxMap;
-
         mapboxMap.setStyle(getString(R.string.navigation_guidance_day)
                 , style -> {
                     enableLocationComponent(style);
                     addDestinationIconSymbolLayer(style);
                     mapboxMap.addOnMapClickListener(MapaActivity.this);
                     btnnavigation = findViewById(R.id.startButton);
-                    btnnavigation.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            boolean simulateRoute = true;
-                            NavigationLauncherOptions options = NavigationLauncherOptions.builder()
-                                    .directionsRoute(currentRoute)
-                                    .shouldSimulateRoute(simulateRoute).build();
-                            NavigationLauncher.startNavigation(MapaActivity.this, options);
-                        }
+                    btnnavigation.setOnClickListener(v -> {
+
+//                        al dar click al boton navigation simulara la ruta trazada
+                        boolean simulateRoute = true;
+                        NavigationLauncherOptions options = NavigationLauncherOptions.builder()
+                                .directionsRoute(currentRoute)
+                                .shouldSimulateRoute(simulateRoute).build();
+                        NavigationLauncher.startNavigation(MapaActivity.this, options);
                     });
 
                 });
@@ -185,10 +185,10 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @SuppressWarnings({"MissingPermission"})
     private void enableLocationComponent(@NonNull Style loadedMapStyle) {
-// Check if permissions are enabled and if not request
+// Verifica si los permisos están habilitados y si no, solicita
         if (PermissionsManager.areLocationPermissionsGranted(this)) {
-// Activate the MapboxMap LocationComponent to show user location
-// Adding in LocationComponentOptions is also an optional parameter
+//Activar MapboxMap LocationComponent para mostrar la ubicación del usuario
+// Agregar LocationComponentOptions también es un parámetro opcional
             LocationComponentOptions localtionCustumer = LocationComponentOptions.builder(this)
                     .elevation(4)
                     .accuracyAlpha(.6f)
@@ -202,20 +202,17 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
                             .build();
 
             locationComponent.activateLocationComponent(locationComponentActivationOptions);
-            //  locationComponent.activateLocationComponent(this, loadedMapStyle);
             locationComponent.setLocationComponentEnabled(true);
-            // Set the component's camera mode
+            // Establecer el modo de cámara del componente
             locationComponent.setCameraMode(CameraMode.TRACKING);
             locationComponent.setRenderMode(RenderMode.COMPASS);
 
-            findViewById(R.id.back_to_camera_tracking_mode).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    locationComponent.setCameraMode(CameraMode.TRACKING);
-                    locationComponent.zoomWhileTracking(16f);
-                    Toast.makeText(MapaActivity.this, "Ubicacion Exacta",
-                            Toast.LENGTH_SHORT).show();
-                }
+            //ubicacion del dispositivo
+            findViewById(R.id.back_to_camera_tracking_mode).setOnClickListener(view -> {
+                locationComponent.setCameraMode(CameraMode.TRACKING);
+                locationComponent.zoomWhileTracking(16f);
+                Toast.makeText(MapaActivity.this, "Ubicacion Exacta",
+                        Toast.LENGTH_SHORT).show();
             });
 
         } else {

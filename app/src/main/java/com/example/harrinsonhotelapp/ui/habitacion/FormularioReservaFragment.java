@@ -34,7 +34,8 @@ public class FormularioReservaFragment extends Fragment {
     SharedPreferences preferences;
     CheckBox cbxEstacionamiento;
     TextInputEditText placa;
-    TextView precio, descripcion, fecha_incio, fecha_final, total_dias, precio_total, nr_camas, t_habitacion;
+    TextView precio, descripcion, fecha_incio, fecha_final,
+            total_dias, precio_total, nr_camas, t_habitacion;
     double t_precio, precio_unitario;
 
     @Override
@@ -84,12 +85,14 @@ public class FormularioReservaFragment extends Fragment {
         });
 
         btn_reservar.setOnClickListener(v -> {
+
             int id_huesped = preferences.getInt("id_huesped", 0);
             int id_habitacion = preferences.getInt("id_habitacion", 0);
             Huesped huesped = new Huesped();
             huesped.setId(id_huesped);
             Habitacion habitacion = new Habitacion();
             habitacion.setId(id_habitacion);
+
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString(
                     "t_precio", String.valueOf(t_precio)
@@ -101,6 +104,7 @@ public class FormularioReservaFragment extends Fragment {
                     , fecha_final.getText() + "T12:00"
                     , placa.getText().toString(),
                     t_precio, huesped, habitacion);
+
             reservaViewModel.sendReserva(reserva);
 
             findNavController(v).navigate(R.id.action_formularioReservaFragment_to_detalleReservaFragment);
@@ -113,7 +117,6 @@ public class FormularioReservaFragment extends Fragment {
     private void setValues() {
         String strTipoHabitacion, strDescripcion;
         int t_dias;
-//        String fechaInicioDb = preferences.getString("f_inicio",null);
 
         t_dias = preferences.getInt("total_dias", 0);
         precio_unitario = Double.parseDouble(preferences.getString("precio", null));

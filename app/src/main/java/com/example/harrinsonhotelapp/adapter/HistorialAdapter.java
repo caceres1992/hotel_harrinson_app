@@ -54,7 +54,7 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialViewHolder> 
         holder.tipo_habitacion.setText(tipo_habitacion);
         holder.code_habitacion.setText(code_habitacion);
                 
-        if (holder.status.getText().equals("FINALIZADA")) {
+        if (holder.status.getText().equals("FINALIZADO")) {
             holder.status.setBackgroundColor(context.getColor(R.color.color_stado_finalizado));
         } else if (holder.status.getText().equals("ACTIVO")) {
             holder.status.setBackgroundColor(context.getColor(R.color.color_stado_activa));

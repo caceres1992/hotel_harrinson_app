@@ -58,7 +58,10 @@ public class Reserva {
     @Expose
     private Habitacion habitacion;
 
-    public Reserva(String fechaInicio, String fechaFinal, String placaVehiculo, Double precioTotal, Huesped huesped, Habitacion habitacion) {
+
+    public Reserva(String fechaInicio, String fechaFinal,
+                   String placaVehiculo, Double precioTotal,
+                   Huesped huesped, Habitacion habitacion) {
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
         this.placaVehiculo = placaVehiculo;
@@ -68,7 +71,9 @@ public class Reserva {
     }
 
 
-    public Reserva(String fechaInicio, String fechaFinal, String placaVehiculo, Double descuento, Double precioTotal, Huesped huesped, Habitacion habitacion) {
+    public Reserva(String fechaInicio, String fechaFinal,
+                   String placaVehiculo, Double descuento, Double precioTotal,
+                   Huesped huesped, Habitacion habitacion) {
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
         this.placaVehiculo = placaVehiculo;

@@ -89,7 +89,9 @@ public class Lista_Habitacion_Fragment extends Fragment implements HabitacionDet
 
 
         habitacionViewModel.filterHabitacionPorFecha(filterHabitacion);
+
         adapter = new HabitacionesAdapter(getContext(), this);
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         settingAnimation();
@@ -145,7 +147,6 @@ public class Lista_Habitacion_Fragment extends Fragment implements HabitacionDet
             listView = dialogFilter.findViewById(R.id.listv_tipo_room);
 
             ArrayAdapter<String> adapterString = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, tipo);
-
             listView.setAdapter(adapterString);
             editText.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -178,7 +179,6 @@ public class Lista_Habitacion_Fragment extends Fragment implements HabitacionDet
                     if (nuevaListaFiltrada.size() != 0) {
                         adapter.setList(nuevaListaFiltrada);
                     } else {
-
                         adapter.setList(habitacions.stream().filter(habitacion -> !habitacion.isPromocion()).collect(Collectors.toList()));
                     }
                     recyclerView.setAdapter(adapter);

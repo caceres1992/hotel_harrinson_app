@@ -35,7 +35,7 @@ public class DetalleReservaFragment extends Fragment {
         double tprecio = Double.parseDouble(preferences.getString("t_precio", null));
         String codigo = "Aparecera en el perfil de usuario";
         double preciototal = tprecio / 2;
-        String strdetalle = getString(R.string.detalle_description, "% (S/" + preciototal + ") ");
+        String strdetalle = getString(R.string.detalle_description, "% (S/ " + preciototal + ") ");
         detalle = v.findViewById(R.id.detalle_reserva_descrption);
         code_reserva = v.findViewById(R.id.detalle_reserva_codigo);
         detalle.setText(strdetalle);
