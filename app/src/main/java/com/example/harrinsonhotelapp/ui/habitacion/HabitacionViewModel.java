@@ -64,7 +64,6 @@ public class HabitacionViewModel extends AndroidViewModel {
 
                 if (response.isSuccessful()) {
                     listMutableLiveData.setValue(response.body());
-
                 } else {
                     Toast.makeText(getApplication(), "codigo " + response.code(), Toast.LENGTH_LONG).show();
                 }

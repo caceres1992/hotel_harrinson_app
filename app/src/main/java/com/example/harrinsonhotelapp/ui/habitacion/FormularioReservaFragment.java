@@ -134,6 +134,5 @@ public class FormularioReservaFragment extends Fragment {
         total_dias.setText(String.valueOf(t_dias));
         t_habitacion.setText(strTipoHabitacion);
 
-
     }
 }
